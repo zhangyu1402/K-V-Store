@@ -1,0 +1,68 @@
+syntax = "proto3";
+import "google/protobuf/wrappers.proto";
+option java_package = "com.zhangyu.raft.rpc";
+
+message VoteRequest {
+    int32 term = 1;
+    string candidateId = 2;
+    int32 lastLogIndex = 3;
+    int32 lastLogTerm = 4;
+}
+
+message VoteResponse {
+    bool status = 1;
+}
+
+message LogEntry {
+    int32 index = 1;
+    int32 term = 2;
+    DataEntry dataEntry = 3;
+    google.protobuf.StringValue command = 5;
+    google.protobuf.StringValue preVal = 4;
+}
+
+
+message DataEntry {
+    string key = 1;
+    google.protobuf.StringValue value = 2;
+}
+
+message CRUDresponse {
+    bool status = 1;
+    DataEntry dateEntry = 2;
+
+}
+
+message AppendLogRequest {
+
+    int32 term = 1;
+    string leaderId = 2;
+    int32 prevLogIndex = 3;
+    int32 prevLogTerm = 4;
+    LogEntry logEntry = 5;
+    int32 leaderCommit = 6;
+
+}
+
+message AppendLogResponse {
+    bool status = 1;
+}
+
+
+service Raft {
+    rpc AskForVote (VoteRequest) returns (VoteResponse) {
+    }
+    rpc AppendLog (AppendLogRequest) returns (AppendLogResponse) {
+    }
+    rpc LogReplication (AppendLogRequest) returns (AppendLogResponse) {
+    }
+    rpc get (DataEntry) returns (CRUDresponse) {
+    }
+    rpc del (DataEntry) returns (CRUDresponse) {
+    }
+    rpc post (DataEntry) returns (CRUDresponse) {
+    }
+    rpc update (DataEntry) returns (CRUDresponse) {
+    }
+
+}
