@@ -1,6 +1,6 @@
 # Distributed Key Value Store
 
-![licence](<https://img.shields.io/badge/license-mit-brightgreen>) ![spring version](<https://img.shields.io/badge/grpc-1.27.0-brightgreen>>) ![version](<https://img.shields.io/badge/version-1.0.0-brightgreen>)
+![licence](<https://img.shields.io/badge/license-mit-brightgreen>) ![GRPC](<https://img.shields.io/badge/grpc-1.27.0-brightgreen>>) ![version](<https://img.shields.io/badge/version-1.0.0-brightgreen>)
 
 This project is a distributed key-value store system base on Raft protocal. In my parallel and distributed system class, I learned Raft and Paxos consensus algorithms. So I would like to write a project to practice what I learn in class. Distributed Key Value Store is very useful. It can be used as distributed database or service registration and discovery center.
 
