@@ -20,7 +20,7 @@ First you have to clone my code. And modify the `config.json` file with you own 
 
 The whole system is based on Raft algorithm. So I will This system contains four module.**log module**, **node module**, **rpc module**, **storage module**.
 
-###log module
+### log module
 
 log module has a interface `LogModule` and its default implementation `LogModuleImpl`.  `LogModule` provide  functions to maintain the logs.
 
