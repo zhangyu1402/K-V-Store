@@ -8,19 +8,43 @@ import com.zhangyu.raft.entity.LogEntry;
  */
 public interface LogModule {
 
-    void write(LogEntry logEntry);
+    /**
+     * add a logEntry to the end of logs.
+     *
+     * @param logEntry
+     */
+    void add(LogEntry logEntry);
 
-    LogEntry read(Long index);
-
+    /**
+     * remove from the startIndex to the end.
+     *
+     * @param startIndex
+     */
     void removeOnStartIndex(Long startIndex);
 
+    /**
+     * get the last logEntry
+     * @return
+     */
     LogEntry getLast();
 
+    /**
+     * get the size to logs
+     * @return
+     */
     int getSize();
 
+    /**
+     * get the index of last logEntry
+     * @return
+     */
     int getLastIndex();
 
+    /**
+     * get the LogEntry with index
+     * @param index
+     * @return
+     */
     LogEntry get(int index);
-
 
 }

@@ -80,9 +80,7 @@ public class RpcServer extends RaftGrpc.RaftImplBase {
 
     @Override
     public void appendLog(RaftOuterClass.AppendLogRequest request, StreamObserver<RaftOuterClass.AppendLogResponse> responseObserver) {
-        System.out.println(request.getTerm());
         AppendLogRequestParam param = ParamToRequest.requestToParam(request);
-        System.out.println(param.getTerm());
         boolean status;
         if (param.getLogEntry() == null) {
             status = consensus.HandleSendHeartBeatTask(param);

@@ -13,12 +13,8 @@ public class LogModuleImpl implements LogModule {
         logs = new ArrayList<>();
     }
 
-    public void write(LogEntry logEntry) {
+    public void add(LogEntry logEntry) {
         logs.add(logEntry);
-    }
-
-    public LogEntry read(Long index) {
-        return null;
     }
 
     public void removeOnStartIndex(Long startIndex) {

@@ -31,19 +31,38 @@ public class NodeTest {
         node.start();
     }
 
+
     @Test
     public void postTest() throws IOException {
 
-        RpcClient client = new RpcClientImpl("127.0.0.1", 5001);
+        RpcClient client = new RpcClientImpl("127.0.0.1", 5000);
         long start = System.currentTimeMillis();
-        String[] res = new String[1000];
-        System.out.println(start);
-        for (int i = 0; i < 1000; i++) {
+        boolean[] res = new boolean[10000];
+//        System.out.println(start);
+        for (int i = 0; i < 10000; i++) {
+            String s = String.valueOf(i);
+            res[i] = client.post(s, s);
+        }
+        System.out.println(System.currentTimeMillis() - start);
+        for (int i = 0; i < 10000; i++) {
+            System.out.println(i + " : " + res[i]);
+        }
+
+    }
+
+    @Test
+    public void getTest() throws IOException {
+
+        RpcClient client = new RpcClientImpl("127.0.0.1", 5000);
+        long start = System.currentTimeMillis();
+        String[] res = new String[10000];
+//        System.out.println(start);
+        for (int i = 0; i < 10000; i++) {
             String s = String.valueOf(i);
             res[i] = client.get(s);
         }
         System.out.println(System.currentTimeMillis() - start);
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10000; i++) {
             System.out.println(i + " : " + res[i]);
         }
 

@@ -189,10 +189,9 @@ public class DefaultNode implements Consensus, Node {
                     vote[0]++;
                 }
             });
-            System.out.println(vote[0]);
             if (vote[0] > peers.size() / 2) {
                 storage.add(key, value);
-                logModule.write(logEntry);
+                logModule.add(logEntry);
                 return true;
             }
             return false;
@@ -217,12 +216,11 @@ public class DefaultNode implements Consensus, Node {
         LogEntry logEntry = new LogEntry();
         logEntry.setIndex(-1);
         logEntry.setTerm(0);
-        logModule.write(logEntry);
+        logModule.add(logEntry);
     }
 
     public void start() {
         init();
-        System.out.println("Node start");
         LOG.info("Node start");
         threadPoolExecutor.submit(() -> {
             try {
@@ -283,7 +281,7 @@ public class DefaultNode implements Consensus, Node {
 
     @Override
     public boolean HandleAppendLog(AppendLogRequestParam param) {
-        System.out.println(param.getTerm() + " " + param.getPrevLogIndex() + " " + param.getPrevLogTerm() + "|" + term + " " + logModule.getLastIndex());
+//        System.out.println(param.getTerm() + " " + param.getPrevLogIndex() + " " + param.getPrevLogTerm() + "|" + term + " " + logModule.getLastIndex());
         if (param.getTerm() < term) return false;
         int preInx = logModule.getLastIndex();
         int preTerm = logModule.getLast().getTerm();
@@ -295,7 +293,7 @@ public class DefaultNode implements Consensus, Node {
         DataEntry dataEntry = param.getLogEntry().getDataEntry();
         logEntry.setDataEntry(dataEntry);
         logEntry.setCommand(POST);
-        logModule.write(logEntry);
+        logModule.add(logEntry);
         storage.add(dataEntry.getKey(), dataEntry.getValue());
         return true;
     }
