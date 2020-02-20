@@ -12,11 +12,11 @@ I redesigned this project. The original repo is [here](<https://github.com/zhang
 2. Seperate the whole system into four module, log module, node module, rpc module, storage module. So there is less dependency between deferent modules. So the project become maintainable and extensible.(This is the mooooost important. And that is why I want to rewrite the previous project. :( )
 3. Get rid of some unnecessary components like `RepeatTimer`,`RaftyMap`,`mapdb`. I use `scheduledExecutorService` to excute a some timed task instead of `RepeatTimer`.(ps: I wrote it myself, bad performance). For the `RaftyMap` and `mapdb`, I got rid of them because this project  focus on data Consensus. The data persistence part people can use whatever they like just by implementing the interface `Storage`.
 
-##Usage
+## Usage
 
 First you have to clone my code. And modify the `config.json` file with you own configuration. Start you cluster with at least three server.  Then if you want to use my Key-value system as a database in your program, you can implement a RPC client or use mine(I already provide a default implementation). BTW, I didn't implement the data persistence module. But I leave a interfaces for users, you can implement it yourself.
 
-##Design 
+## Design 
 
 The whole system is based on Raft algorithm. So I will This system contains four module.**log module**, **node module**, **rpc module**, **storage module**.
 
